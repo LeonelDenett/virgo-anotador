@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background: rgb(4,28,50);
+    background: linear-gradient(0deg, #041c32 0%, #0d83ba 50%, #041c32 100%);
+}
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 75%;
+    box-shadow: #112b3c 0px 0px 32px -6px;
+    border: 1px solid #ffffff;
+    background-color: #f66b0e;
+}
