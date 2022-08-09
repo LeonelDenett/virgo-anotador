@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 function Footer() {
     return (
         <Box className={styles.footer}>
-            <Typography>Footer</Typography>
+            <Typography variant="footer">Copyrights © Leonel Denett | All rights Reserved</Typography>
         </Box>
     );
 }

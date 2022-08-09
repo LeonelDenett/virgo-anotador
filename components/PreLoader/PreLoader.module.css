@@ -14,6 +14,9 @@
     width: 75%;
     height: 75%;
     box-shadow: #112b3c 0px 0px 32px -6px;
-    border: 1px solid #ffffff;
-    background-color: #f66b0e;
+    border: 1px solid #e3f2fd;
+    background: #fe8c00;
+    background: -webkit-linear-gradient(to right, #f83600, #fe8c00);
+    background: linear-gradient(to right, #f83600, #fe8c00);
 }
+
