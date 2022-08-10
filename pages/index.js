@@ -29,96 +29,52 @@ export default function Home() {
         setShow(!show)
         console.log("Clicked")
     }
-    const pagination = {
-        clickable: true,
-        bulletClass: `swiper-pagination-bullet`
-    };
 
     return (
         <Box className={styles.container}>
             {/* Title */}
-            <Typography component="h1" variant="h1" color="primary">Virgo Anotador</Typography>
+            <Typography component="h1" variant="h1" color="primary">Virgo <br/> Anotador</Typography>
             <Divider className={styles.divider}/>
             {/* Content */}
             <Box className={styles.box}>
                 <Typography color="primary" className={styles.subtitle}>Que sale hoy rey ?</Typography>
                 <Box className={styles.cardContainer}>
-                    {/* <Card className={styles.card}>
-                        <Image
-                            src="https://images.unsplash.com/photo-1602901248692-06c8935adac0"
-                            alt="Picture of the author"
-                            layout="responsive"
-                            height={'75%'}
-                            width={'100%'}
-                            priority
-                        />
-                        <CardContent>
-                            <Typography variant="h5" component="h5">
-                            Codiak
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="large" variant="contained">Partida</Button>
-                            <Button size="large" variant="contained">Historial</Button>
-                        </CardActions>
-                    </Card>
-                    <Card className={styles.card}>
-                        <Image
-                            src="https://images.unsplash.com/photo-1602901248692-06c8935adac0"
-                            alt="Picture of the author"
-                            layout="responsive"
-                            height={'75%'}
-                            width={'100%'}
-                            priority
-                        />
-                        <CardContent>
-                            <Typography variant="h5" component="h5">
-                            Codiak
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="large" variant="contained">Partida</Button>
-                            <Button size="large" variant="contained">Historial</Button>
-                        </CardActions>
-                    </Card> */}
-                    {/* <div className="swiper">
-                    <div className="swiper-wrapper">
-                        <div className="swiper-slide">Slide 1</div>
-                        <div className="swiper-slide">Slide 2</div>
-                        <div className="swiper-slide">Slide 3</div>
-                    </div>
-                    <div className="swiper-pagination"></div>
-                    </div> */}
-                    {/* Swiper needs Global Style */}
+                    {/* Swiper needs Global Styles */}
                     <style global jsx>{`
                         .swiper-pagination {
                         margin-bottom: -0.7rem
-                        },
+                        }
+                        .swiper-pagination-bullet{
+                            background: #fe8c00;
+                            background: -webkit-linear-gradient(to left, #f83600, #fe8c00);
+                            background: linear-gradient(to right, #f83600, #fe8c00);
+                            height: 0.8rem;
+                            width: 0.8rem;
+                            opacity: 0.5;
+                        }
+                        .swiper-pagination-bullet-active{
+                            opacity: 1;
+                        }
                     `}</style>
                     <Swiper
-                        pagination={pagination}
+                        pagination={true}
                         modules={[Pagination]}
-                        className="mySwiper"
+                        className={styles.swiperContainer}
                         spaceBetween={16}
-                        style={{
-                            "--swiper-pagination-color": "#f56217",
-                            "--swiper-pagination-bullet-inactive-color": "#999999",
-                            "--swiper-pagination-bullet-inactive-opacity": "0.5",
-                            "--swiper-pagination-bullet-size": "0.8rem",
-                            "--swiper-pagination-bullet-horizontal-gap": "3px",
-                        }}
                     >
+                        {/* Codi */}
                         <SwiperSlide>
                             <Card className={styles.card}>
+                                <Box sx={{height: {xs: '20rem', sm: '18rem', md: '15rem', lg: '14rem'}}} className={styles.imageContainer}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1602901248692-06c8935adac0"
                                     alt="Picture of the author"
-                                    layout="responsive"
                                     objectFit='cover'
-                                    height={'100%'}
-                                    width={'100%'}
                                     priority
+                                    className={styles.image}
+                                    layout="fill"
                                 />
+                                </Box>
                                 <CardContent>
                                     <Typography variant="h5" component="h5">
                                     Codi
@@ -126,17 +82,19 @@ export default function Home() {
                                 </CardContent>
                             </Card>
                         </SwiperSlide>
+                        {/* Fifita */}
                         <SwiperSlide>
                             <Card className={styles.card}>
+                                <Box sx={{height: {xs: '20rem', sm: '18rem', md: '15rem', lg: '14rem'}}} className={styles.imageContainer}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6"
                                     alt="Picture of the author"
-                                    layout="responsive"
                                     objectFit='cover'
-                                    height={'100%'}
-                                    width={'100%'}
                                     priority
+                                    className={styles.image}
+                                    layout="fill"
                                 />
+                                </Box>
                                 <CardContent>
                                     <Typography variant="h5" component="h5">
                                     Fifita

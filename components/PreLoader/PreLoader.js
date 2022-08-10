@@ -5,9 +5,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 // Mui Icons
 import SettingsIcon from '@mui/icons-material/Settings';
+// Logo
+import Logo from '../../public/logo.jpeg'
 // Framer Motion
 import { motion } from 'framer-motion';
-import { fadeOut, preLoader, preLoaderIcon, zoomingIn } from '../FramerMotionVariants/Variants';
+import { fadeOut, preLoader, preLoaderIcon, zoomingIn, logo } from '../FramerMotionVariants/Variants';
 
 function PreLoader() {
     return (
@@ -22,6 +24,16 @@ function PreLoader() {
         >
             <Box
                 component={motion.div}
+                variants={logo}
+                initial="start"
+                animate="animate"
+                exit="exit"
+                className={styles.logoContainer}
+                >
+                    <img src="/logo.jpeg" alt="me" width="250" height="200" className={styles.logo} />
+                </Box>
+            <Box
+                component={motion.div}
                 className={styles.card}
                 variants={preLoader}
                 initial="start"
@@ -29,16 +41,17 @@ function PreLoader() {
                 exit="exit"
                 key="Card"
             >
-                <Typography component={motion.h2} color="primary" mr={1} variant="h2" variants={zoomingIn}>Cargando</Typography>
-                <SettingsIcon
-                    component={motion.svg}
-                    variants={preLoaderIcon}
-                    initial="start"
-                    animate="animate"
-                    color="primary"
-                />
+                <Box className={styles.loading}>
+                    <Typography component={motion.h2} color="primary" mr={1} variant="h2" variants={zoomingIn}>Cargando</Typography>
+                    <SettingsIcon
+                        component={motion.svg}
+                        variants={preLoaderIcon}
+                        initial="start"
+                        animate="animate"
+                        color="primary"
+                    />
+                </Box>
             </Box>
-            <div className={styles.progress}></div>
         </Box>
     );
 }

@@ -11,7 +11,7 @@ let theme = createTheme({
         }
     },
     palette: {
-        primary: {main: "#e3f2fd"},
+        primary: {main: "#ffffff"},
         secondary: {main: "rgb(0,0,0, 0.87)"}
     }
 });

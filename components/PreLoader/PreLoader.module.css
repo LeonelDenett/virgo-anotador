@@ -1,16 +1,16 @@
 .container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     height: 100vh;
     background: rgb(4,28,50);
     background: linear-gradient(0deg, #041c32 0%, #0d83ba 50%, #041c32 100%);
 }
 .card{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 75%;
     height: 75%;
     box-shadow: #112b3c 0px 0px 32px -6px;
@@ -19,4 +19,20 @@
     background: -webkit-linear-gradient(to right, #f83600, #fe8c00);
     background: linear-gradient(to right, #f83600, #fe8c00);
 }
+.logoContainer{
+    width: 75%;
+    height: 70%;
+    justify-content: center;
+    display: flex;
+    position: absolute;
 
+    z-index: 99;
+}
+.logo{
+    border-radius: 2rem;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
