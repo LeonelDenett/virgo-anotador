@@ -1,6 +1,7 @@
 // Next
 import {useState} from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 // Styles
 import styles from '../styles/Home.module.css';
 // Mui Components
@@ -8,7 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
@@ -65,41 +66,45 @@ export default function Home() {
                         {/* Codi */}
                         <SwiperSlide>
                             <Card className={styles.card}>
-                                <Box sx={{height: {xs: '20rem', sm: '18rem', md: '15rem', lg: '14rem'}}} className={styles.imageContainer}>
-                                <Image
-                                    src="https://images.unsplash.com/photo-1602901248692-06c8935adac0"
-                                    alt="Picture of the author"
-                                    objectFit='cover'
-                                    priority
-                                    className={styles.image}
-                                    layout="fill"
-                                />
-                                </Box>
-                                <CardContent>
-                                    <Typography variant="h5" component="h5">
-                                    Codi
-                                    </Typography>
-                                </CardContent>
+                                <CardActionArea>
+                                    <Box sx={{height: {xs: '20rem', sm: '18rem', md: '15rem', lg: '14rem'}}} className={styles.imageContainer}>
+                                    <Image
+                                        src="https://images.unsplash.com/photo-1602901248692-06c8935adac0"
+                                        alt="Picture of the author"
+                                        objectFit='cover'
+                                        priority
+                                        className={styles.image}
+                                        layout="fill"
+                                    />
+                                    </Box>
+                                    <CardContent>
+                                        <Typography variant="h5" component="h5">
+                                        Codi
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
                             </Card>
                         </SwiperSlide>
                         {/* Fifita */}
                         <SwiperSlide>
                             <Card className={styles.card}>
-                                <Box sx={{height: {xs: '20rem', sm: '18rem', md: '15rem', lg: '14rem'}}} className={styles.imageContainer}>
-                                <Image
-                                    src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6"
-                                    alt="Picture of the author"
-                                    objectFit='cover'
-                                    priority
-                                    className={styles.image}
-                                    layout="fill"
-                                />
-                                </Box>
-                                <CardContent>
-                                    <Typography variant="h5" component="h5">
-                                    Fifita
-                                    </Typography>
-                                </CardContent>
+                                <CardActionArea>
+                                    <Box sx={{height: {xs: '20rem', sm: '18rem', md: '15rem', lg: '14rem'}}} className={styles.imageContainer}>
+                                    <Image
+                                        src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6"
+                                        alt="Picture of the author"
+                                        objectFit='cover'
+                                        priority
+                                        className={styles.image}
+                                        layout="fill"
+                                    />
+                                    </Box>
+                                    <CardContent>
+                                        <Typography variant="h5" component="h5">
+                                        Fifita
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
                             </Card>
                         </SwiperSlide>
                     </Swiper>

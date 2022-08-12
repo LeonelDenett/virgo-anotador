@@ -1,3 +1,4 @@
+import Link from "next/link";
 // Styles
 import styles from './Navbar.module.css'
 // Mui Components
@@ -26,7 +27,10 @@ function Navbar() {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 News
                 </Typography>
+                <Link href="/login">
                 <Button color="inherit">Login</Button>
+                </Link>
+                
             </Toolbar>
             </AppBar>
         </Box>

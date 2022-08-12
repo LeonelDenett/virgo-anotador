@@ -6,7 +6,7 @@ const fadeOut =  {
 const preLoader =  {
     start: {scale: 0.5},
     animate: {scale: 1.1, borderRadius: 60, transition: {type: "spring", duration: 0.7, delay: 0.4}},
-    exit: {scale: 1.5, borderRadius: 0}
+    exit: {opacity: 0}
 };
 const preLoaderIcon = {
     start: {scale: 1.2},
@@ -15,6 +15,7 @@ const preLoaderIcon = {
 const zoomingIn = {
     start: {scale: 1},
     animate: {scale: 1.02, transition: {yoyo: 20}},
+    exit: {scale: 1.5}
 }
 const logo = {
     start: {scale: 0.5},

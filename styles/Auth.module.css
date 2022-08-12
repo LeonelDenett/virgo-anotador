@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 1.25rem;
+    background: #fe8c00;
+    background: -webkit-linear-gradient(to left, #f83600, #fe8c00);
+    background: linear-gradient(to right, #f83600, #fe8c00);
+}
+.card{
+    background-color: #041c3270;
+    border: solid 1px #041c32;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+.logoContainer{
+    border-radius: 2rem;
+    margin-bottom: 3.6rem;
+}
+.logoImage{
+    border-radius: 2rem;
+}
+.errorcaca {
+    color: #fff;
+}
+

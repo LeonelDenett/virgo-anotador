@@ -8,7 +8,6 @@
     background: #fe8c00;
     background: -webkit-linear-gradient(to left, #f83600, #fe8c00);
     background: linear-gradient(to right, #f83600, #fe8c00);
-
 }
 .divider{
     background-color: #e3f2fd;
@@ -24,7 +23,7 @@
     border: 1px solid #e3f2fd;
     border-radius: 2rem;
     padding: 1rem;
-    background: rgb(4,28,50);
+    background: #041c32;
     background: linear-gradient(0deg, #041c32 0%, #0d83ba 50%, #041c32 100%);
 }
 .subtitle{

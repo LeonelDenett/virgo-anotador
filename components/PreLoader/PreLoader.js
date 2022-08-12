@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 // Mui Icons
 import SettingsIcon from '@mui/icons-material/Settings';
 // Logo
-import Logo from '../../public/logo.jpeg'
+import Logo from '../../public/logo.jpeg';
 // Framer Motion
 import { motion } from 'framer-motion';
 import { fadeOut, preLoader, preLoaderIcon, zoomingIn, logo } from '../FramerMotionVariants/Variants';
@@ -42,7 +42,18 @@ function PreLoader() {
                 key="Card"
             >
                 <Box className={styles.loading}>
-                    <Typography component={motion.h2} color="primary" mr={1} variant="h2" variants={zoomingIn}>Cargando</Typography>
+                    <Typography
+                        component={motion.h2}
+                        color="primary"
+                        mr={1}
+                        variant="h2"
+                        variants={zoomingIn}
+                        initial="start"
+                        animate="animate"
+                        exit="exit"
+                    >
+                        Cargando
+                    </Typography>
                     <SettingsIcon
                         component={motion.svg}
                         variants={preLoaderIcon}
