@@ -15,12 +15,14 @@ import { useFormik } from 'formik';
 import {validationSchema} from '../components/Formik/Validations';
 // Firebase
 import { auth } from "../firebase/firebase-config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { useAuthValue } from '../firebase/AuthContext';
 // Toastify
 import { toast } from 'react-toastify';
 
 function Login() {
     const router = useRouter();
+    const {setTimeActive} = useAuthValue()
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -30,22 +32,33 @@ function Login() {
         onSubmit: (values) => {
             signInWithEmailAndPassword(auth, values.email, values.password)
             .then(() => {
-                console.log("Logeado")
-                router.push('/')
+                if(!auth.currentUser.emailVerified) {
+                    sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        setTimeActive(true),
+                        router.push('/verify-email');
+                        console.log("Logeado");
+                })
+                .catch(error => {
+                    if (error.code === 'auth/user-not-found') {
+                        toast.error('Usuario o Contraseña invalido.')
+                    }
+                    else if (error.code === 'auth/wrong-password') {
+                        toast.error('Usuario o Contraseña invalido.')
+                    }
+                    else if (error.code === 'auth/too-many-requests') {
+                        toast.error('Intentaste logearte muchas veces erroneamente, te bloqueamos por cuestiones de seguridad. Intentá logearte mas tarde')
+                    }
+                    else {
+                        toast.error(error.message)
+                    }
+                })
+                }else {
+                    router.push('/');
+                }
             })
-            .catch(error => {
-                if (error.code === 'auth/user-not-found') {
-                    toast.error('Usuario o Contraseña invalido.')
-                }
-                else if (error.code === 'auth/wrong-password') {
-                    toast.error('Usuario o Contraseña invalido.')
-                }
-                else if (error.code === 'auth/too-many-requests') {
-                    toast.error('Intentaste logearte muchas veces erroneamente, te bloqueamos por cuestiones de seguridad. Intentá logearte mas tarde')
-                }
-                else {
-                    toast.error(error.message)
-                }
+            .catch (error => {
+                toast.error(error.message)
             })
         },
     });

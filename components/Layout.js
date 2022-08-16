@@ -6,7 +6,8 @@ import Box from '@mui/material/Box';
 import Navbar from './Navbar/Navbar';
 import Footer from './Footer/Footer';
 // Framer Motion
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { layout } from "../components/FramerMotionVariants/Variants";
 // Toastify
 import ToastifyContainer from './ToastifyContainer';
 
@@ -16,9 +17,10 @@ function Layout({children}) {
             <ToastifyContainer/>
             <Box
                 component={motion.div}
-                initial={{ opacity: 0, scale: 1.5, borderRadius: 200 }}
-                animate={{ opacity: 1, scale: 1, borderRadius: 0 }}
-                transition={{ duration: 1 }}
+                variants={layout}
+                initial="start"
+                animate="animate"
+                exit="exit"
             >
                 <Navbar/>
                 <Box className={styles.container}>

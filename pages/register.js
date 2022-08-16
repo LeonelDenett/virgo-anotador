@@ -21,7 +21,6 @@ import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/
 import { toast } from 'react-toastify';
 // Frmaer Motion
 import { motion, AnimatePresence } from "framer-motion";
-import { buttonSubmit } from "../components/FramerMotionVariants/Variants";
 
 function Register() {
     // Timer for Email Validation

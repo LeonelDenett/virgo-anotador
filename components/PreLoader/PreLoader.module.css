@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 1.25rem;
     background: rgb(4,28,50);
     background: linear-gradient(0deg, #041c32 0%, #0d83ba 50%, #041c32 100%);
 }
@@ -11,8 +12,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 75%;
-    height: 75%;
+    width: 90%;
+    height: 90%;
     box-shadow: #112b3c 0px 0px 32px -6px;
     border: 1px solid #e3f2fd;
     background: #fe8c00;
@@ -21,11 +22,10 @@
 }
 .logoContainer{
     width: 75%;
-    height: 70%;
+    height: 85%;
     justify-content: center;
     display: flex;
     position: absolute;
-
     z-index: 99;
 }
 .logo{
@@ -33,6 +33,7 @@
 }
 .loading{
     display: flex;
+    flex-direction: flex;
     justify-content: center;
     align-items: center;
 }

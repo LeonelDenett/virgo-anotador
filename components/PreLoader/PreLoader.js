@@ -9,18 +9,17 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Logo from '../../public/logo.jpeg';
 // Framer Motion
 import { motion } from 'framer-motion';
-import { fadeOut, preLoader, preLoaderIcon, zoomingIn, logo } from '../FramerMotionVariants/Variants';
+import { fade, preLoader, preLoaderIcon, zoomingIn, logo } from '../FramerMotionVariants/Variants';
 
 function PreLoader() {
     return (
         <Box
             className={styles.container}
             component={motion.div}
-            variants={fadeOut}
+            variants={fade}
             initial="start"
             animate="animate"
             exit="exit"
-            key="PreLoader"
         >
             <Box
                 component={motion.div}
@@ -30,7 +29,7 @@ function PreLoader() {
                 exit="exit"
                 className={styles.logoContainer}
                 >
-                    <img src="/logo.jpeg" alt="me" width="250" height="200" className={styles.logo} />
+                    <img src="/logo.jpeg" alt="me" width="250" height="250" className={styles.logo} />
                 </Box>
             <Box
                 component={motion.div}

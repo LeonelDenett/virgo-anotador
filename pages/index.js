@@ -1,7 +1,8 @@
 // Next
-import {useState} from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 // Styles
 import styles from '../styles/Home.module.css';
 // Mui Components
@@ -11,10 +12,6 @@ import Divider from '@mui/material/Divider';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-// Mui Icons
-import CircleIcon from '@mui/icons-material/Circle';
 // import Swiper JS
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -22,17 +19,33 @@ import { Pagination } from "swiper";
 import 'swiper/css';
 import 'swiper/css/pagination';
 // Framer Motion
-import {motion, AnimatePresence} from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+// Firebase
+import { useAuthValue } from '../firebase/AuthContext';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebase-config';
+
 
 export default function Home() {
-    const [show,setShow] = useState(false)
-    function Show() {
-        setShow(!show)
-        console.log("Clicked")
+    // Current User
+    const {currentUser} = useAuthValue()
+    const router = useRouter();
+    const logout = async () => {
+        await signOut(auth);
+        router.push("/login")
+    };
+
+    if (!currentUser) {
+        router.push('/login')
     }
 
     return (
         <Box className={styles.container}>
+            <p>
+          <strong>Email verified: </strong>
+          {`${currentUser?.emailVerified}`}
+        </p>
+        <button onClick={logout}>Sign Out</button>
             {/* Title */}
             <Typography component="h1" variant="h1" color="primary">Virgo <br/> Anotador</Typography>
             <Divider className={styles.divider}/>

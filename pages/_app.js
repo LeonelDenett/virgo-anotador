@@ -16,17 +16,16 @@ import Layout from '../components/Layout';
 import { motion, AnimatePresence } from 'framer-motion';
 // Firebase
 import { auth } from '../firebase/firebase-config';
-import { onAuthStateChanged } from 'firebase/auth'
-import { AuthProvider } from '../firebase/AuthContext'
+import { onAuthStateChanged } from 'firebase/auth';
+import { AuthProvider } from '../firebase/AuthContext';
 
 function MyApp({ Component, pageProps }) {
     const [loading, setLoading] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
-    const [timeActive, setTimeActive] = useState(false)
-
+    const [timeActive, setTimeActive] = useState(false);
     // Loader
     useEffect(() =>{
-        setTimeout(() => setLoading(true), 3000);
+        setTimeout(() => setLoading(true), 2000);
     })
     // User State
     useEffect(() => {
@@ -42,20 +41,24 @@ function MyApp({ Component, pageProps }) {
             <AnimatePresence exitBeforeEnter>
                 {
                     loading ? (
-                        <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
-                            <Box component={motion.div} key="Layout">
+                        <Box key="Pages">
+                            <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
+                            <motion.div component={motion.div} key="Expanded">
                                 <Layout>
                                     <Component {...pageProps}/>
                                 </Layout>
-                            </Box>
+                            </motion.div>
                         </AuthProvider>
+                        </Box>
                     )
                     :
                     (
-                        <PreLoader loading={loading}/>
+                        <Box key="PreLoader">
+                            <PreLoader loading={loading}/>
+                        </Box>
                     )
                 }
-            </AnimatePresence>
+                </AnimatePresence>
         </ThemeProvider>
     )
 }

@@ -1,11 +1,12 @@
-const fadeOut =  {
+// Preloader
+const fade =  {
     start: {opacity: 0},
     animate: {opacity: 1},
     exit: {opacity: 0}
 };
 const preLoader =  {
-    start: {scale: 0.5},
-    animate: {scale: 1.1, borderRadius: 60, transition: {type: "spring", duration: 0.7, delay: 0.4}},
+    start: {scale: 0.7},
+    animate: {scale: 1.1, borderRadius: '2rem', transition: {type: "spring", duration: 0.7, delay: 0.4}},
     exit: {opacity: 0}
 };
 const preLoaderIcon = {
@@ -22,13 +23,14 @@ const logo = {
     animate: {scale: 1, transition: {type: "spring", duration: 0.7, delay: 0.4}},
     exit: {opacity: 0}
 }
-// Register
-const buttonSubmit = {
-    start: {scale: 0.5},
-    animate: {scale: 1, transition: {type: "spring", duration: 0.7, delay: 0.4}},
+// Layout
+const layout = {
+    start: {opacity: 0},
+    animate: {opacity: 1, transition: { type: "spring", delay: 0.3}},
     exit: {opacity: 0}
 }
 
 
 
-export { fadeOut, preLoader, preLoaderIcon, zoomingIn, logo, buttonSubmit};
+
+export { fade, preLoader, preLoaderIcon, zoomingIn, logo, layout};
