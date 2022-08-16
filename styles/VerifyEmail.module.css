@@ -4,40 +4,17 @@
     justify-content: center;
     text-align: center;
     height: 100%;
-    padding: 1.25rem;
     background: #fe8c00;
     background: -webkit-linear-gradient(to left, #f83600, #fe8c00);
     background: linear-gradient(to right, #f83600, #fe8c00);
 }
 .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50%;
     background-color: #00000066;
     border: solid 1px #ffffff;
     padding: 2rem;
     border-radius: 2rem;
-    height: 100%;
 }
-.logoContainer{
-    border-radius: 2rem;
-    margin-bottom: 3.6rem;
-}
-.logoImage{
-    border-radius: 2rem;
-}
-.label, .labelText {
-    color: #fff;
-}
-.labelError, .labelTextError {
-    color: #f83600;
-}
-.submitButton{
-    border-radius: 0.75rem;
-}
-.submitButtonDone{
-    border-radius: 50%;
-}
-.linkToLogin{
-    display: flex;
-    flex-direction: column;
-}
-
-

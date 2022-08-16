@@ -14,13 +14,26 @@ import PreLoader from '../components/PreLoader/PreLoader';
 import Layout from '../components/Layout';
 // Framer Motion
 import { motion, AnimatePresence } from 'framer-motion';
+// Firebase
+import { auth } from '../firebase/firebase-config';
+import { onAuthStateChanged } from 'firebase/auth'
+import { AuthProvider } from '../firebase/AuthContext'
 
 function MyApp({ Component, pageProps }) {
     const [loading, setLoading] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [timeActive, setTimeActive] = useState(false)
 
+    // Loader
     useEffect(() =>{
         setTimeout(() => setLoading(true), 3000);
     })
+    // User State
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+          setCurrentUser(user)
+         })
+    }, [])
 
     return (
         <ThemeProvider theme={theme}>
@@ -29,11 +42,13 @@ function MyApp({ Component, pageProps }) {
             <AnimatePresence exitBeforeEnter>
                 {
                     loading ? (
-                        <Box component={motion.div} key="Layout">
-                            <Layout>
-                                <Component {...pageProps}/>
-                            </Layout>
-                        </Box>
+                        <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
+                            <Box component={motion.div} key="Layout">
+                                <Layout>
+                                    <Component {...pageProps}/>
+                                </Layout>
+                            </Box>
+                        </AuthProvider>
                     )
                     :
                     (

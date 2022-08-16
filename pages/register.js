@@ -14,12 +14,19 @@ import Input from "../components/Input";
 import { useFormik } from 'formik';
 import {validationSchema} from '../components/Formik/Validations';
 // Firebase
+import { useAuthValue } from '../firebase/AuthContext';
 import { auth } from "../firebase/firebase-config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 // Toastify
 import { toast } from 'react-toastify';
+// Frmaer Motion
+import { motion, AnimatePresence } from "framer-motion";
+import { buttonSubmit } from "../components/FramerMotionVariants/Variants";
 
-function Login() {
+function Register() {
+    // Timer for Email Validation
+    const {setTimeActive} = useAuthValue();
+    // Create User
     const router = useRouter();
     const formik = useFormik({
         initialValues: {
@@ -28,32 +35,29 @@ function Login() {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            signInWithEmailAndPassword(auth, values.email, values.password)
+            createUserWithEmailAndPassword(auth, values.email, values.password)
             .then(() => {
-                console.log("Logeado")
-                router.push('/')
+                console.log("Cuenta creada");
+                sendEmailVerification(auth.currentUser, {url: "http://localhost:3000/login"});
+                setTimeActive(true);
+                toast.success("Cuenta creada con exito");
+                router.push("/verify-email");
             })
             .catch(error => {
-                if (error.code === 'auth/user-not-found') {
-                    toast.error('Usuario o Contraseña invalido.')
-                }
-                else if (error.code === 'auth/wrong-password') {
-                    toast.error('Usuario o Contraseña invalido.')
-                }
-                else if (error.code === 'auth/too-many-requests') {
-                    toast.error('Intentaste logearte muchas veces erroneamente, te bloqueamos por cuestiones de seguridad. Intentá logearte mas tarde')
+                if (error.code === 'auth/email-already-in-use') {
+                    toast.error('Email ya utilizado, prueba con otro.');
                 }
                 else {
-                    toast.error(error.message)
+                    toast.error(error.message);
                 }
             })
         },
-    });
+    }, []);
     return (
         <Box className={styles.container}>
             <Box className={styles.card}>
                 <Logo logoImage={styles.logoImage} logoContainer={styles.logoContainer} width={250} height={250} />
-                {/* Login Form */}
+                {/* Create User Form */}
                 <form onSubmit={formik.handleSubmit}>
                     <Input
                         name={"email"}
@@ -69,14 +73,23 @@ function Login() {
                         error={formik.touched.password && (formik.errors.password)}
                         styles={styles}
                     />
-                    <Button className={styles.submitButton} color="primary" variant="contained" fullWidth type="submit">
-                        entrar
-                    </Button>
-                    <Box mt={3}>
-                    <Typography color="primary" variant="caption">¿No tienes una cuenta? </Typography>
-                    <Link href="/register">
-                        <Typography sx={{cursor: "pointer"}} color="error" variant="link">Registrate</Typography>
-                    </Link>
+                    {/* Submit Button */}
+                    <AnimatePresence>
+                        <Button
+                            component={motion.button}
+                            className={styles.submitButton}
+                            color="primary"
+                            variant="contained"
+                            fullWidth
+                            type="submit"
+                        >
+                            Crear cuenta
+                        </Button>
+                    </AnimatePresence>
+                    {/* Link to Login */}
+                    <Box mt={3} className={styles.linkToLogin}>
+                        <Typography color="primary" variant="caption">¿Ya tienes una cuenta? </Typography>
+                        <Link href="/login"><Typography sx={{cursor: "pointer"}} color="error" variant="link">Entrar</Typography></Link>
                     </Box>
                 </form>
             </Box>
@@ -84,4 +97,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

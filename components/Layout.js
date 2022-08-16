@@ -7,10 +7,13 @@ import Navbar from './Navbar/Navbar';
 import Footer from './Footer/Footer';
 // Framer Motion
 import { motion } from 'framer-motion';
+// Toastify
+import ToastifyContainer from './ToastifyContainer';
 
 function Layout({children}) {
     return (
         <>
+            <ToastifyContainer/>
             <Box
                 component={motion.div}
                 initial={{ opacity: 0, scale: 1.5, borderRadius: 200 }}

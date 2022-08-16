@@ -22,7 +22,13 @@ const logo = {
     animate: {scale: 1, transition: {type: "spring", duration: 0.7, delay: 0.4}},
     exit: {opacity: 0}
 }
+// Register
+const buttonSubmit = {
+    start: {scale: 0.5},
+    animate: {scale: 1, transition: {type: "spring", duration: 0.7, delay: 0.4}},
+    exit: {opacity: 0}
+}
 
 
 
-export { fadeOut, preLoader, preLoaderIcon, zoomingIn, logo};
+export { fadeOut, preLoader, preLoaderIcon, zoomingIn, logo, buttonSubmit};
