@@ -58,6 +58,7 @@ function PreLoader() {
                         variants={preLoaderIcon}
                         initial="start"
                         animate="animate"
+                        exit="exit"
                         color="primary"
                     />
                 </Box>

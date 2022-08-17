@@ -11,3 +11,13 @@ export const validationSchema = yup.object({
         .min(8, 'Min 8 caracteres')
         .required('Contraseña requerida'),
 });
+
+export const validationSchemaResetPassword = yup.object({
+    email: yup
+        .string()
+        .email('Email invalido')
+        .required('Email requerido'),
+});
+
+
+

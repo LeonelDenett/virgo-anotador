@@ -30,22 +30,14 @@ export default function Home() {
     // Current User
     const {currentUser} = useAuthValue()
     const router = useRouter();
-    const logout = async () => {
-        await signOut(auth);
-        router.push("/login")
-    };
-
+    
     if (!currentUser) {
         router.push('/login')
     }
 
     return (
         <Box className={styles.container}>
-            <p>
-          <strong>Email verified: </strong>
-          {`${currentUser?.emailVerified}`}
-        </p>
-        <button onClick={logout}>Sign Out</button>
+        {currentUser?.email}
             {/* Title */}
             <Typography component="h1" variant="h1" color="primary">Virgo <br/> Anotador</Typography>
             <Divider className={styles.divider}/>

@@ -12,11 +12,12 @@ const preLoader =  {
 const preLoaderIcon = {
     start: {scale: 1.2},
     animate: {rotate: 360, transition: {ease: "linear", duration: 2, repeat: Infinity}},
+    exit: {opacity: 0}
 };
 const zoomingIn = {
     start: {scale: 1},
-    animate: {scale: 1.02, transition: {yoyo: 20}},
-    exit: {scale: 1.5}
+    animate: {scale: 1.05, transition: {yoyo: 20}},
+    exit: {scale: 1.8}
 }
 const logo = {
     start: {scale: 0.5},
@@ -26,7 +27,7 @@ const logo = {
 // Layout
 const layout = {
     start: {opacity: 0},
-    animate: {opacity: 1, transition: { type: "spring", delay: 0.3}},
+    animate: {opacity: 1, transition: { type: "spring", delay: 0.6}},
     exit: {opacity: 0}
 }
 

@@ -1,3 +1,5 @@
+// Next
+import { useRouter } from "next/router";
 // Styles
 import styles from '../styles/Layout.module.css';
 // Mui Components
@@ -10,6 +12,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { layout } from "../components/FramerMotionVariants/Variants";
 // Toastify
 import ToastifyContainer from './ToastifyContainer';
+// Firebase
+import { useAuthValue } from '../firebase/AuthContext';
 
 function Layout({children}) {
     return (

@@ -1,12 +1,15 @@
 // Next
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState,useEffect } from 'react';
 // Styles
-import styles from "../styles/VerifyEmail.module.css";
+import styles from "../styles/Auth.module.css";
 // Mui Components
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+// Mui Icons
+import WestRoundedIcon from '@mui/icons-material/WestRounded';
 // Firebase
 import { useAuthValue } from '../firebase/AuthContext';
 import { auth } from '../firebase/firebase-config';
@@ -24,6 +27,7 @@ function VerifyEmail() {
         .then(() => {
             setButtonDisabled(false)
             setTimeActive(true)
+            toast.success("Email de confirmación enviado con éxito.")
         }).catch((err) => {
             toast.error(err.message)
             setButtonDisabled(false)
@@ -32,7 +36,7 @@ function VerifyEmail() {
     // Timer for resend Email
     const [ buttonDisabled, setButtonDisabled] = useState(false);
     const { timeActive, setTimeActive } = useAuthValue();
-    const [time, setTime] = useState(62);
+    const [time, setTime] = useState(60);
     const router = useRouter();
 
     useEffect(() => {
@@ -67,8 +71,10 @@ function VerifyEmail() {
     return (
         <Box className={styles.container} sx={{px: {xs: '1.25rem', md: '10rem', lg: '20rem'}, py: {xs: '1.25rem', lg: '1.5rem'}}}>
             <Box className={styles.card}>
-                <Typography color="primary">Verifica tu dirección de correo electrónico</Typography>
-                <Typography my={2} color="primary">{currentUser?.email}</Typography>
+                <Typography my={2} color="primary" variant="h2" component="h1">Verifica tu dirección de correo electrónico.</Typography>
+                <Typography mb={3} color="primary" id="transition-modal-title" variant="h6" component="h2">
+                    Confirma tu email "{currentUser?.email}" para tener acceso a la aplicación.
+                </Typography>
                 <Button
                     variant="contained"
                     onClick={resendEmailVerification}
@@ -76,6 +82,14 @@ function VerifyEmail() {
                 >
                     Reenviar Email {timeActive && time}
                 </Button>
+                {/* Back to Login Page */}
+                <Box mt={24} className={styles.backToLogin}>
+                    <Button variant="contained" startIcon={<WestRoundedIcon/>} className={styles.submitButton}>
+                        <Link href="/login">
+                            <Typography variant="caption">Volver</Typography>
+                        </Link>
+                    </Button>
+                </Box>
             </Box>
         </Box>
     );

@@ -36,15 +36,15 @@ function Register() {
         onSubmit: (values) => {
             createUserWithEmailAndPassword(auth, values.email, values.password)
             .then(() => {
-                console.log("Cuenta creada");
+                console.log("Cuenta creada con éxito.");
                 sendEmailVerification(auth.currentUser, {url: "http://localhost:3000/login"});
                 setTimeActive(true);
-                toast.success("Cuenta creada con exito");
+                toast.success("Cuenta creada con éxito.");
                 router.push("/verify-email");
             })
             .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {
-                    toast.error('Email ya utilizado, prueba con otro.');
+                    toast.error('Error: Email en uso, prueba con otro.');
                 }
                 else {
                     toast.error(error.message);
@@ -53,7 +53,7 @@ function Register() {
         },
     }, []);
     return (
-        <Box className={styles.container}>
+        <Box className={styles.container} sx={{px: {xs: '1.25rem', md: '10rem', lg: '20rem'}, py: {xs: '1.25rem', lg: '1.5rem'}}}>
             <Box className={styles.card}>
                 <Logo logoImage={styles.logoImage} logoContainer={styles.logoContainer} width={250} height={250} />
                 {/* Create User Form */}
@@ -86,9 +86,13 @@ function Register() {
                         </Button>
                     </AnimatePresence>
                     {/* Link to Login */}
-                    <Box mt={3} className={styles.linkToLogin}>
+                    <Box mt={3} className={styles.link}>
                         <Typography color="primary" variant="caption">¿Ya tienes una cuenta? </Typography>
-                        <Link href="/login"><Typography sx={{cursor: "pointer"}} color="error" variant="link">Entrar</Typography></Link>
+                        <Link href="/login">
+                            <Typography sx={{cursor: "pointer"}} color="secondary" variant="link">
+                                Entrar
+                            </Typography>
+                        </Link>
                     </Box>
                 </form>
             </Box>

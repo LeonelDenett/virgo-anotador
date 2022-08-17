@@ -1,4 +1,5 @@
 // Next
+import { useRouter } from 'next/router';
 import {useState, useEffect} from 'react';
 // Styles
 import { ThemeProvider } from '@mui/material/styles';
@@ -30,11 +31,17 @@ function MyApp({ Component, pageProps }) {
     // User State
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-          setCurrentUser(user)
-         })
-    }, [])
+            if (user) {
+                console.log("state = definitely signed in")
+            } else {
+                console.log("state = definitely signed out")
+            }
+            setCurrentUser(user)
+        })
+    }, [auth])
 
     return (
+        <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
         <ThemeProvider theme={theme}>
             <HeadMeta/>
             <CssBaseline/>
@@ -42,13 +49,11 @@ function MyApp({ Component, pageProps }) {
                 {
                     loading ? (
                         <Box key="Pages">
-                            <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
                             <motion.div component={motion.div} key="Expanded">
                                 <Layout>
                                     <Component {...pageProps}/>
                                 </Layout>
                             </motion.div>
-                        </AuthProvider>
                         </Box>
                     )
                     :
@@ -60,6 +65,7 @@ function MyApp({ Component, pageProps }) {
                 }
                 </AnimatePresence>
         </ThemeProvider>
+        </AuthProvider>
     )
 }
 
