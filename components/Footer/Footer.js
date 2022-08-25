@@ -1,8 +1,8 @@
 // Styles
-import styles from './Footer.module.css'
+import styles from "./Footer.module.css"
 // Mui Components
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 function Footer() {
     return (

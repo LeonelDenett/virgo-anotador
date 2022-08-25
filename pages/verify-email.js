@@ -1,7 +1,6 @@
 // Next
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState,useEffect } from 'react';
+import { useState,useEffect } from "react";
 // Styles
 import styles from "../styles/Auth.module.css";
 // Mui Components
@@ -9,35 +8,31 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 // Mui Icons
-import WestRoundedIcon from '@mui/icons-material/WestRounded';
+import WestRoundedIcon from "@mui/icons-material/WestRounded";
 // Firebase
-import { useAuthValue } from '../firebase/AuthContext';
-import { auth } from '../firebase/firebase-config';
-import { sendEmailVerification } from 'firebase/auth';
+import { auth } from "../firebase/firebase-config";
+import { sendEmailVerification } from "firebase/auth";
 // Toastify
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function VerifyEmail() {
-    // Current User State
-    const { currentUser } = useAuthValue();
     // Resend Email
     const resendEmailVerification = () => {
         setButtonDisabled(true)
-        sendEmailVerification(auth.currentUser)
+        sendEmailVerification(auth.currentUser, {url: "http://localhost:3000/"})
         .then(() => {
-            setButtonDisabled(false)
+            setButtonDisabled(false);
             setTimeActive(true)
-            toast.success("Email de confirmación enviado con éxito.")
-        }).catch((err) => {
-            toast.error(err.message)
+            toast.success("Si el Email existe en nuestra base de datos se le enviará un link de verificación.")
+        }).catch((error) => {
+            toast.error(error.message)
             setButtonDisabled(false)
         })
     };
     // Timer for resend Email
     const [ buttonDisabled, setButtonDisabled] = useState(false);
-    const { timeActive, setTimeActive } = useAuthValue();
+    const [timeActive, setTimeActive] = useState(false);
     const [time, setTime] = useState(60);
-    const router = useRouter();
 
     useEffect(() => {
         let interval = null
@@ -53,34 +48,19 @@ function VerifyEmail() {
         return () => clearInterval(interval);
     }, [timeActive, time])
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            currentUser?.reload()
-            .then(() => {
-                if(currentUser?.emailVerified){
-                clearInterval(interval)
-                router.push('/')
-                }
-            })
-            .catch((err) => {
-                toast.error(err.message)
-            })
-        }, 1000)
-    }, [router, currentUser]);
-
     return (
-        <Box className={styles.container} sx={{px: {xs: '1.25rem', md: '10rem', lg: '20rem'}, py: {xs: '1.25rem', lg: '1.5rem'}}}>
+        <Box className={styles.container} sx={{px: {xs: "1.25rem", md: "10rem", lg: "20rem"}, py: {xs: "1.25rem", lg: "1.5rem"}}}>
             <Box className={styles.card}>
                 <Typography my={2} color="primary" variant="h2" component="h1">Verifica tu dirección de correo electrónico.</Typography>
                 <Typography mb={3} color="primary" id="transition-modal-title" variant="h6" component="h2">
-                    Confirma tu email "{currentUser?.email}" para tener acceso a la aplicación.
+                    Confirma tu email "{auth.currentUser?.email}" para tener acceso a la aplicación.
                 </Typography>
                 <Button
                     variant="contained"
                     onClick={resendEmailVerification}
                     disabled={timeActive}
                 >
-                    Reenviar Email {timeActive && time}
+                    Reenviar Email { timeActive && time }
                 </Button>
                 {/* Back to Login Page */}
                 <Box mt={24} className={styles.backToLogin}>

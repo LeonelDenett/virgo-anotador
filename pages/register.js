@@ -1,100 +1,82 @@
 // Next
-import Link from 'next/link';
+import Link from "next/link";
 import { useRouter } from "next/router";
 // Styles
 import styles from "../styles/Auth.module.css";
 // Mui Components
 import Box from "@mui/material/Box";
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 // Components
-import Logo from '../components/Logo';
-import Input from "../components/Input";
+import Logo from "../components/Logo";
+import { InputTextField } from "../components/InputTextField";
 // Formik and Yup Validation
-import { useFormik } from 'formik';
-import {validationSchema} from '../components/Formik/Validations';
+import { Formik, Form, Field  } from "formik";
+import {validationSchemaAuth} from "../components/Formik/Validations";
 // Firebase
-import { useAuthValue } from '../firebase/AuthContext';
 import { auth } from "../firebase/firebase-config";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 // Toastify
-import { toast } from 'react-toastify';
-// Frmaer Motion
+import { toast } from "react-toastify";
+// Framer Motion
 import { motion, AnimatePresence } from "framer-motion";
 
 function Register() {
-    // Timer for Email Validation
-    const {setTimeActive} = useAuthValue();
-    // Create User
+    // Router
     const router = useRouter();
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: validationSchema,
-        onSubmit: (values) => {
-            createUserWithEmailAndPassword(auth, values.email, values.password)
-            .then(() => {
-                console.log("Cuenta creada con éxito.");
-                sendEmailVerification(auth.currentUser, {url: "http://localhost:3000/login"});
-                setTimeActive(true);
-                toast.success("Cuenta creada con éxito.");
-                router.push("/verify-email");
-            })
-            .catch(error => {
-                if (error.code === 'auth/email-already-in-use') {
-                    toast.error('Error: Email en uso, prueba con otro.');
-                }
-                else {
-                    toast.error(error.message);
-                }
-            })
-        },
-    }, []);
+
     return (
-        <Box className={styles.container} sx={{px: {xs: '1.25rem', md: '10rem', lg: '20rem'}, py: {xs: '1.25rem', lg: '1.5rem'}}}>
+        <Box className={styles.container} sx={{px: {xs: "1.25rem", md: "10rem", lg: "20rem"}, py: {xs: "1.25rem", lg: "1.5rem"}}}>
             <Box className={styles.card}>
+                {/* Logo */}
                 <Logo logoImage={styles.logoImage} logoContainer={styles.logoContainer} width={250} height={250} />
-                {/* Create User Form */}
-                <form onSubmit={formik.handleSubmit}>
-                    <Input
-                        name={"email"}
-                        label={"Email"}
-                        formik={formik}
-                        error={formik.touched.email && (formik.errors.email)}
-                        styles={styles}
-                    />
-                    <Input
-                        name={"password"}
-                        label={"Password"}
-                        formik={formik}
-                        error={formik.touched.password && (formik.errors.password)}
-                        styles={styles}
-                    />
-                    {/* Submit Button */}
-                    <AnimatePresence>
+                {/* Register Form */}
+                <Formik
+                    initialValues={{email: '', password: ''}}
+                    validationSchema={validationSchemaAuth}
+                    onSubmit={values => {
+                        createUserWithEmailAndPassword(auth, values.email, values.password)
+                        .then(() => {
+                            sendEmailVerification(auth.currentUser, {url: "http://localhost:3000/login"});
+                            toast.success("Cuenta creada con éxito.");
+                            router.push("/login");
+                        })
+                        .catch(error => {
+                            if (error.code === "auth/email-already-in-use") {
+                                toast.error("Error: Email en uso, prueba con otro.");
+                            }
+                            else {
+                                toast.error(error.message);
+                            }
+                        })
+                    }}
+                >
+                    <Form>
+                        {/* Email */}
+                        <Field name="email" component={InputTextField}/>
+                        {/* Password */}
+                        <Field name="password" component={InputTextField} styles={styles}/>
+                        {/* Submit */}
                         <Button
-                            component={motion.button}
                             className={styles.submitButton}
                             color="primary"
                             variant="contained"
                             fullWidth
                             type="submit"
-                        >
-                            Crear cuenta
-                        </Button>
-                    </AnimatePresence>
-                    {/* Link to Login */}
-                    <Box mt={3} className={styles.link}>
-                        <Typography color="primary" variant="caption">¿Ya tienes una cuenta? </Typography>
-                        <Link href="/login">
-                            <Typography sx={{cursor: "pointer"}} color="secondary" variant="link">
-                                Entrar
-                            </Typography>
-                        </Link>
-                    </Box>
-                </form>
+                            >
+                                Crear cuenta
+                            </Button>
+                        {/* Link to Login */}
+                        <Box className={styles.linkContainer}>
+                            <Typography color="primary" variant="caption">Ya tienes una cuenta?</Typography>
+                            <Link href="/login">
+                                <Typography className={styles.link} color="secondary" variant="subtitle2">
+                                    Entrar
+                                </Typography>
+                            </Link>
+                        </Box>
+                    </Form>
+                </Formik>
             </Box>
         </Box>
     );

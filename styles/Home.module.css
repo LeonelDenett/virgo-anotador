@@ -4,7 +4,6 @@
     justify-content: flex-start;
     text-align: center;
     height: 100%;
-    padding: 1.25rem;
     background: #fe8c00;
     background: -webkit-linear-gradient(to left, #f83600, #fe8c00);
     background: linear-gradient(to right, #f83600, #fe8c00);
@@ -30,8 +29,6 @@
     margin-top: 1rem;
     margin-bottom: 2rem;
 }
-
-
 .cardContainer, .card{
     border-radius: 2rem;
     justify-content: str
@@ -47,8 +44,6 @@
 .swiperContainer{
     height: 100%;
 }
-
-
 .imageContainer {
     width: 100%;
     position: relative;

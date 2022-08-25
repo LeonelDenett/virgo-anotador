@@ -1,19 +1,19 @@
 // Next
 import { useRouter } from "next/router";
 // Styles
-import styles from '../styles/Layout.module.css';
+import styles from "../styles/Layout.module.css";
 // Mui Components
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 // Components
-import Navbar from './Navbar/Navbar';
-import Footer from './Footer/Footer';
+import Navbar from "./Navbar/Navbar";
+import Footer from "./Footer/Footer";
 // Framer Motion
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
 import { layout } from "../components/FramerMotionVariants/Variants";
 // Toastify
-import ToastifyContainer from './ToastifyContainer';
+import ToastifyContainer from "./ToastifyContainer";
 // Firebase
-import { useAuthValue } from '../firebase/AuthContext';
+import { useAuthValue } from "../firebase/AuthContext";
 
 function Layout({children}) {
     return (

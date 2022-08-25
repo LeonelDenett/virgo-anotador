@@ -1,5 +1,5 @@
 // Next
-import Head from 'next/head'
+import Head from "next/head"
 
 function HeadMeta() {
     return (

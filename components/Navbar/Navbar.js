@@ -1,28 +1,30 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 // Styles
-import styles from './Navbar.module.css'
+import styles from "./Navbar.module.css"
 // Mui Components
-import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import Box from "@mui/material/Box";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 // Firebase
-import { useAuthValue } from '../../firebase/AuthContext';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase/firebase-config';
+// import { useAuthValue } from "../../firebase/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase-config";
+import { useUserAuth } from "../../firebase/AuthContext";
 
 function Navbar() {
     // Current User
-    const {currentUser} = useAuthValue()
+    // const {currentUser} = useAuthValue()
+    const { logOut } = useUserAuth();
     const router = useRouter();
-    const logout = async () => {
-        await signOut(auth);
-        router.push("/login")
-    };
+    // const logout = () => {
+    //     signOut(auth);
+    //     router.push("/login")
+    // };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -40,7 +42,7 @@ function Navbar() {
                 <Typography variant="h6" sx={{ flexGrow: 1 }}>
                     Menu
                 </Typography>
-                {router.pathname !== "/"? null: <Button onClick={logout} color="inherit">Logout</Button>}
+                {router.pathname !== "/"? null: <Button onClick={logOut} color="inherit">Logout</Button>}
             </Toolbar>
             </AppBar>
         </Box>

@@ -27,17 +27,27 @@
     border-radius: 2rem;
 }
 .label, .labelText {
-    color: #fff;
+    color: #ffffff;
+}
+.labelText{
+    letter-spacing: 0.15rem;
 }
 .labelError, .labelTextError {
     color: #f83600;
 }
 .submitButton{
     border-radius: 0.75rem;
+    padding: 0.5rem;
 }
-.link{
+.linkContainer{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.link {
+    cursor: pointer;
+    align-self: center;
 }
 .modal{
     position: absolute;

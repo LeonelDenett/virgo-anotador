@@ -1,15 +1,15 @@
 // Styles
-import styles from './PreLoader.module.css';
+import styles from "./PreLoader.module.css";
 // Mui Components
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 // Mui Icons
-import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsIcon from "@mui/icons-material/Settings";
 // Logo
-import Logo from '../../public/logo.jpeg';
+import Logo from "../../public/logo.jpeg";
 // Framer Motion
-import { motion } from 'framer-motion';
-import { fade, preLoader, preLoaderIcon, zoomingIn, logo } from '../FramerMotionVariants/Variants';
+import { motion } from "framer-motion";
+import { fade, preLoader, preLoaderIcon, zoomingIn, logo } from "../FramerMotionVariants/Variants";
 
 function PreLoader() {
     return (

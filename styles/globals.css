@@ -1,5 +1,5 @@
 /* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
 
 html {
     height: -webkit-fill-available;
@@ -8,5 +8,5 @@ html {
 body {
     height: 100vh;
     height: -webkit-fill-available;
-    font-family: 'Bungee Inline', cursive;
+    font-family: "Bungee Inline", cursive;
 }

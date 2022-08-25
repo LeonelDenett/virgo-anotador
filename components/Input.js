@@ -1,26 +1,27 @@
 // Mui Components
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 
-function Input({name, label, error, styles, formik}) {
+function Input({name, label, error, styles, formik, type, value}) {
     return (
         <>
             <TextField
                 variant="outlined"
-                sx={{'& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                        borderColor: '#ffffff',
-                        borderRadius: '1rem'
+                sx={{"& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                        borderColor: "#ffffff",
+                        borderRadius: "1rem"
                     },
                 }}}
                 fullWidth
                 id={name}
                 name={name}
                 label={label}
-                value={formik.values.name}
+                type={type}
+                value={value}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                autoComplete='off'
+                autoComplete="off"
                 error={error}
                 InputLabelProps={formik.errors ? {className: styles.label} : {className: styles.labelError}}
                 inputProps={formik.errors ? {className: styles.labelText} : {className: styles.labelTextError}}
